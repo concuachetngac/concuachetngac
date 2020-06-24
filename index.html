@@ -64,9 +64,10 @@
           border-radius:3px;
           background-color: red;
           padding: 10px 20px 10px 20px;
+          cursor:pointer;
         }
       #new-quote:hover {
-          background-color:rgba(0, 0, 0, 0.9);
+          background-color: rgba(0, 0, 0, 0.9);
       }
         .footer {
           text-align: center;
@@ -112,7 +113,7 @@
         const quoteText = document.querySelector('.quote-text')
         const icon = document.querySelector('.icon');
         newQuote.onclick = () => {
-          newQuote.style.color = randColor;
+          newQuote.style.backgroundColor = randColor;
         }
         
       </script>
