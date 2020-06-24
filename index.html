@@ -111,11 +111,13 @@
         const gitIcon = document.querySelector('#git-icon');
         newQuote.onclick = () => {
           let randColor = colors[Math.floor(Math.random()*colors.length)];
-          newQuote.style.backgroundColor = randColor;
-          background.style.backgroundColor = randColor;
-          quoteText.style.color = randColor;
-          foxIcon.style.color = randColor;
-          gitIcon.style.color = randColor;
+          setTimeOut(() => {
+            newQuote.style.backgroundColor = randColor;
+            background.style.backgroundColor = randColor;
+            quoteText.style.color = randColor;
+            foxIcon.style.color = randColor;
+            gitIcon.style.color = randColor;
+          }, 1000);
         } 
       </script>
 </html>
