@@ -67,7 +67,7 @@
         }
         .footer {
           text-align: center;
-          top: 110px;
+          top: 310px;
           color: #fff;
         }
         .footer a {
@@ -101,4 +101,18 @@
       <div class='footer'>by <a href='' id='my-name'>Tuan</a></div>
     </div>
   </body>
+      <script>
+        let colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+        let randColor = corlors[Math.floor(Math.random()*colors.length)];
+        const newQuote = document.querySelector('#new-quote');
+        const background = document.querySelector('html body');
+        const quoteText = document.querySelector('.quote-text')
+        const icon = document.querySelector('.icon');
+        newQuote.onclick() = () => {
+          newQuote.style.color = randColor;
+          background.style.backgroundColor = randColor;
+          quoteText.style.color = randColor;
+          icon.style.color = randColor;
+        }
+      </script>
 </html>
