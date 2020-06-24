@@ -120,6 +120,8 @@
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
+          $('#author').html(randomQuote.author);
+          $('#quote').text(randomQuote.quote);
         }
         function getQuotes() {
             return $.ajax({
@@ -127,26 +129,10 @@
               success: function(result) {
                 if(typeof result === 'string') {
                 quotesData = JSON.parse(result);
-                console.log('quotesData');
-                console.log(quotesData);
                 }
               }
             })
           }
-        function getRandomQuote() {
-          return quote = quotesData.quotes[Math.floor(Math.random() * quotesData.length)];
-        }
-        function getQuote() {
-          let randomQuote = getRandomQuote();
-          currentQuote = randomQuote.quote;
-          currentAuthor = randomQuote.author;
-        }
-        $(document).ready(function() {
-          getQuotes().then(() => {
-    getQuote();
-  });
-        });
-         $('#author').html(randomQuote.author);
-         $('#quote').text(randomQuote.quote);
+        
       </script>
 </html>
