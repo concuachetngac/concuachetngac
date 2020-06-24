@@ -111,7 +111,7 @@
         const gitIcon = document.querySelector('#git-icon');
         newQuote.onclick = () => {
           let randColor = colors[Math.floor(Math.random()*colors.length)];
-          setTimeOut(() => {
+          setTimeout(() => {
             newQuote.style.backgroundColor = randColor;
             background.style.backgroundColor = randColor;
             quoteText.style.color = randColor;
