@@ -125,10 +125,7 @@
               success: function(result) {
                 if(typeof result === 'string') {
                 quoteDatas = JSON.parse(result);
-                let randQuote = quoteDatas.quotes[Math.floor(Math.random()*result.quotes.length))].quote;
-                let randAuthor = quoteDatas.quotes[Math.floor(Math.random()*result.quotes.length))].author;
-                $('#quote').html(randQuote);
-                $('#author').html(randAuthor);
+                  
                 }
               }
             })
