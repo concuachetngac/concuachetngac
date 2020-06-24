@@ -111,6 +111,9 @@
         newQuote.onclick = () => {
           let randColor = colors[Math.floor(Math.random()*colors.length)];
           newQuote.style.backgroundColor = randColor;
+          background.style.backgroundColor = randColor;
+          quoteText.style.color = randColor;
+          icon.style.color = randColor;
         }
         
       </script>
