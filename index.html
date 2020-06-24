@@ -50,9 +50,12 @@
           top: 50px;
           font-size: 40px;
         }
-        .icon {
+        #fox-icon {
           color: red;
         }
+        #git-icon {
+          color: red;
+      }
         .new-quote {
           display: inline;
           left: 350px;
@@ -91,8 +94,8 @@
         </div>
         <div class='buttons'>
           <div class='nav-icon'>
-            <a href=''><i class='fa fa-firefox icon'></i></a>
-            <a href=''><i class='fa fa-github icon'></i></a>
+            <a href=''><i class='fa fa-firefox' id='fox-icon'></i></a>
+            <a href=''><i class='fa fa-github' id='git-icon></i></a>
           </div>
           <div class='new-quote'>
             <button type='submit' id='new-quote'>New Quote</button>
@@ -107,13 +110,15 @@
         const newQuote = document.querySelector('#new-quote');
         const background = document.querySelector('body');
         const quoteText = document.querySelector('.quote-text')
-        const icon = document.querySelector('.icon');
+        const foxIcon = document.querySelector('#fox-icon');
+        const gitIcon = document.querySelector('#git-icon');
         newQuote.onclick = () => {
           let randColor = colors[Math.floor(Math.random()*colors.length)];
           newQuote.style.backgroundColor = randColor;
           background.style.backgroundColor = randColor;
           quoteText.style.color = randColor;
-          icon.style.color = randColor;
+          foxIcon.style.color = randColor;
+          gitIcon.style.color = randColor;
         } 
       </script>
 </html>
