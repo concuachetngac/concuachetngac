@@ -6,9 +6,7 @@
       <div class='quote-text'>
         <i class='fa fa-quote-left text'></i> <span class='text' id='quote'>asdasdasda sdasdasda sdasdasdsdfsdfdsfsfdsfd</span>
       </div>
-      <div class='quote-author'>
-        - <span id='author'><span>
-      </div>
+      <div class='quote-author'>- <span id='author'><span></div>
       <div class='buttons'>
         <div class='nav-icon'>
           <a href=''><i class='fa fa-firefox icon'></i></a>
