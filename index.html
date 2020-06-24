@@ -66,9 +66,6 @@
           padding: 10px 20px 10px 20px;
           cursor:pointer;
         }
-      #new-quote:hover {
-          background-color: rgba(0, 0, 0, 0.9);
-      }
         .footer {
           text-align: center;
           top: 310px;
@@ -107,12 +104,12 @@
   </body>
       <script>
         let colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
-        let randColor = colors[Math.floor(Math.random()*colors.length)];
         const newQuote = document.querySelector('#new-quote');
         const background = document.querySelector('html body');
         const quoteText = document.querySelector('.quote-text')
         const icon = document.querySelector('.icon');
         newQuote.onclick = () => {
+          let randColor = colors[Math.floor(Math.random()*colors.length)];
           newQuote.style.backgroundColor = randColor;
         }
         
