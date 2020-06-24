@@ -106,6 +106,8 @@
       <script>
         let colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
         let quotesData;
+        let currentQuote;
+        let currentAuthor;
         const newQuote = document.querySelector('#new-quote');
         const background = document.querySelector('body');
         const quoteText = document.querySelector('.quote-text')
@@ -131,10 +133,20 @@
               }
             })
           }
-        let randQuote = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)].quote;
-        let randAuthor = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)].author;
+        function getRandomQuote() {
+          return quote = quotesData.quotes[Math.floor(Math.random() * quotesData.length)];
+        }
+        function getQuote() {
+          let randomQuote = getRandomQuote();
+          currentQuote = randomQuote.quote;
+          currentAuthor = randomQuote.author;
+        }
         $(document).ready(function() {
-          
-        })
+          getQuotes().then(() => {
+    getQuote();
+  });
+        });
+         $('#author').html(randomQuote.author);
+         $('#quote').text(randomQuote.quote);
       </script>
 </html>
