@@ -87,7 +87,7 @@
           <i class='fa fa-quote-left text'></i> <span class='text' id='quote'>asdasdasda sdasdasda sdasdasdsdfsdfdsfsfdsfd</span>
         </div>
         <div class='quote-author'>
-          - <span id='author'><span>
+          - <span id='author'></span>
         </div>
         <div class='buttons'>
           <div class='nav-icon'>
@@ -102,6 +102,7 @@
       <div class='footer'>by <a href='' id='my-name'>Tuan</a></div>
     </div>
   </body>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
         let colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
         const newQuote = document.querySelector('#new-quote');
@@ -116,6 +117,19 @@
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
-        } 
+        }
+        $(document).ready(function() {
+          $('#new-quote').click(() => {
+            $.ajax({
+              url: 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',
+              succes: function(result) {
+                let randQuote = result.quotes[Math.floor(Math.random()*result.quotes.length))].quote;
+                let randAuthor = result.quotes[Math.floor(Math.random()*result.quotes.length))].author;
+                $('#quote').html(randQuote);
+                $('#author').html(randAuthor);
+              }
+            })
+          })
+        });
       </script>
 </html>
