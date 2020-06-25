@@ -113,6 +113,7 @@
         const quoteText = document.querySelector('.quote-text')
         const foxIcon = document.querySelector('#fox-icon');
         const gitIcon = document.querySelector('#git-icon');
+        const authorText = document.querySelector('#author');
         newQuote.onclick = () => {
           getColor();
           getQuote();
@@ -124,6 +125,7 @@
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
+          authorText.style.color = randColor;
         }
         function getQuotes() {
             return $.ajax({
