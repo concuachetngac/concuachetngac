@@ -120,8 +120,6 @@
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
-          $('#author').html(randomQuote.author);
-          $('#quote').text(randomQuote.quote);
         }
         function getQuotes() {
             return $.ajax({
@@ -133,6 +131,13 @@
               }
             })
           }
+        function getQuote() {
+          let quoteData = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
+          currentQuote = quoteData.quote;
+          currentAuthor = quoteData.author;
+          document.getElementById("author").innerHTML = currentAuthor;
+          document.getElementById("quote").innerHTML = currentQuote;
+        }
         
       </script>
 </html>
