@@ -114,13 +114,16 @@
         const foxIcon = document.querySelector('#fox-icon');
         const gitIcon = document.querySelector('#git-icon');
         newQuote.onclick = () => {
+          getColor();
+          getQuote();
+        }
+        function getColor() {
           let randColor = colors[Math.floor(Math.random()*colors.length)];
           newQuote.style.backgroundColor = randColor;
           background.style.backgroundColor = randColor;
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
-          getQuote().then(() => {getQuotes();});
         }
         function getQuotes() {
             return $.ajax({
@@ -132,6 +135,10 @@
               }
             })
           }
+        window.onload = () => {
+          getQuote();
+          getColor();
+        };
         function getQuote() {
           let quoteData = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
           currentQuote = quoteData.quote;
