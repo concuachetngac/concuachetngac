@@ -137,10 +137,6 @@
               }
             })
           }
-        window.onload = () => {
-          getQuote();
-          getColor();
-        };
         function getQuote() {
           let quoteData = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
           currentQuote = quoteData.quote;
@@ -151,6 +147,7 @@
         $(document).ready(function() {
           getQuotes().then(() => {
             getQuote();
+            getColor();
           })
         })
         
