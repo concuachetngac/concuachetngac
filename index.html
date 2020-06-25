@@ -144,10 +144,10 @@
           document.getElementById("author").innerHTML = '-' + currentAuthor;
           document.getElementById("quote").innerHTML = currentQuote;
         }
+          getColor();
         $(document).ready(function() {
           getQuotes().then(() => {
             getQuote();
-            getColor();
           })
         })
         
