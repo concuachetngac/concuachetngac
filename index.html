@@ -87,7 +87,7 @@
           <i class='fa fa-quote-left text'></i> <span class='text' id='quote'>asdasdasda sdasdasda sdasdasdsdfsdfdsfsfdsfd</span>
         </div>
         <div class='quote-author'>
-          - <span id='author'></span>
+          <span id='author'></span>
         </div>
         <div class='buttons'>
           <div class='nav-icon'>
@@ -120,6 +120,7 @@
           quoteText.style.color = randColor;
           foxIcon.style.color = randColor;
           gitIcon.style.color = randColor;
+          getQuote().then(() => {getQuotes();});
         }
         function getQuotes() {
             return $.ajax({
@@ -135,9 +136,14 @@
           let quoteData = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
           currentQuote = quoteData.quote;
           currentAuthor = quoteData.author;
-          document.getElementById("author").innerHTML = currentAuthor;
+          document.getElementById("author").innerHTML = '-' + currentAuthor;
           document.getElementById("quote").innerHTML = currentQuote;
         }
+        $(document).ready(function() {
+          getQuotes().then(() => {
+            getQuote();
+          })
+        })
         
       </script>
 </html>
