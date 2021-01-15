@@ -1,155 +1,372 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
-        * {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          vertical-align: baseline;
-        }
-        body {
-          background-color:;
-          display: inline;
-          align-items: center;
-          justify-content: center;
-        }
-        div {
-          position: relative;
-        }
-        #quote-box {
-          padding: 50px 70px;
-          position: relative;
-          background-color: #fff;
-          width: 600px;
-          left: 35%;
-          top: 300px;
-          border-radius: 2%;
-        }
-        .quote-text {
-          color:;
-          text-align: center;
-          font-size: 30px;
-          clear: both;
-          font-weight: 500;
-        }
-        i {
-          font-size:1.0em;
-          margin-right: 2px;
-          left: 100px;
-        }
-        .quote-author {
-          font-size: 17px;
-          text-align: right;
-          color:;
-          top: 10px;
-        }
-        .nav-icon {
-          top: 50px;
-          font-size: 40px;
-        }
-        .icon {
-          color:;
-      }
-        .new-quote {
-          display: inline;
-          left: 350px;
-        }
-        #new-quote {
-          outline: none;
-          border: none;
-          color: #fff;
-          border-radius:3px;
-          background-color:;
-          padding: 10px 20px 10px 20px;
-          cursor:pointer;
-        }
-        .footer {
-          text-align: center;
-          top: 310px;
-          color: #fff;
-        }
-        .footer a {
-          color: #fff;
-        }
-        .footer a:hover {
-          text-decoration: none;
-          color: #fff;
-        }
-    </style>
-  </head>
-  <body>
-    <div id='wrapper' class='wrapper'>
-      <div id='quote-box'>
-        <div class='quote-text'>
-          <i class='fa fa-quote-left text'></i> <span class='text' id='quote'></span>
-        </div>
-        <div class='quote-author'>
-          <span id='author'></span>
-        </div>
-        <div class='buttons'>
-          <div class='nav-icon'>
-            <a href=''><i class='fa fa-firefox icon' id='fox-icon'></i></a>
-            <a href=''><i class='fa fa-github icon' id='git-icon'></i></a>
-          </div>
-          <div class='new-quote'>
-            <button type='submit' id='new-quote'>New Quote</button>
-          </div>
-        </div>
-      </div>
-      <div class='footer'>by <a href='' id='my-name'>Tuan</a></div>
-    </div>
-  </body>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script>
-        let colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
-        let quotesData;
-        let currentQuote;
-        let currentAuthor;
-        const newQuote = document.querySelector('#new-quote');
-        const background = document.querySelector('body');
-        const quoteText = document.querySelector('.quote-text')
-        const foxIcon = document.querySelector('#fox-icon');
-        const gitIcon = document.querySelector('#git-icon');
-        const authorText = document.querySelector('#author');
-        newQuote.onclick = () => {
-          getColor();
-          getQuote();
-        }
-        function getColor() {
-          let randColor = colors[Math.floor(Math.random()*colors.length)];
-          newQuote.style.backgroundColor = randColor;
-          background.style.backgroundColor = randColor;
-          quoteText.style.color = randColor;
-          foxIcon.style.color = randColor;
-          gitIcon.style.color = randColor;
-          authorText.style.color = randColor;
-        }
-        function getQuotes() {
-            return $.ajax({
-              url: 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',
-              success: function(result) {
-                if(typeof result === 'string') {
-                quotesData = JSON.parse(result);
+    <head>
+        <style>
+            .wrap {
+                display: block;
+                font-family: sans-serif;
+                font-size: 115%;
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 50px;
+                border: solid black;      
+                height: 600px;
+            }
+            .box {
+                width: 20px;
+                height: 20px;  
+            }
+            .container {
+                display: inline-block;
+                width: fit-content;
+                border: none;
+            }
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <script>
+        let number = 30;
+        class movement {
+            static moveLeft() {
+                if(document.getElementById("box" + (start.x - 1) + "." + start.y).getAttribute('kind') == 'item') {
+                    ahri.weapon = true;
                 }
-              }
-            })
-          }
-        function getQuote() {
-          let quoteData = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
-          currentQuote = quoteData.quote;
-          currentAuthor = quoteData.author;
-          document.getElementById("author").innerHTML = '-' + currentAuthor;
-          document.getElementById("quote").innerHTML = currentQuote;
+                if(start.x != 0 && document.getElementById("box" + (start.x - 1) + "." + start.y).getAttribute('status') == 'non-block') {
+                    if(document.getElementById("box" + (start.x - 1) + "." + start.y).getAttribute('kind') != 'monster' || ahri.weapon == true) {
+                        document.getElementById("box" + start.x + "." + start.y).innerHTML = "";
+                        start.x--;
+                        ahri.createThings(start.x, start.y);
+                    }
+                }
+            }
+
+            static moveRight(number) {
+                if(document.getElementById("box" + (start.x + 1) + "." + start.y).getAttribute('kind') == 'item') {
+                    ahri.weapon = true;
+                }
+                if(start.x != (number - 1) && document.getElementById("box" + (start.x + 1) + "." + start.y).getAttribute('status') == 'non-block') {
+                    if(document.getElementById("box" + (start.x + 1) + "." + start.y).getAttribute('kind') != 'monster' || ahri.weapon == true) {
+                        document.getElementById("box" + start.x + "." + start.y).innerHTML = "";
+                        start.x++;
+                        ahri.createThings(start.x, start.y);
+                    }
+                }
+            }
+
+            static moveUp() {
+                if(document.getElementById("box" + start.x + "." + (start.y - 1)).getAttribute('kind') == 'item') {
+                    ahri.weapon = true;
+                }
+                if(start.y != 0 && document.getElementById("box" + start.x + "." + (start.y - 1)).getAttribute('status') == 'non-block') {
+                    if(document.getElementById("box" + start.x + "." + (start.y - 1)).getAttribute('kind') != 'monster' || ahri.weapon == true) {
+                        document.getElementById("box" + start.x + "." + start.y).innerHTML = "";
+                        start.y--;
+                        ahri.createThings(start.x, start.y);
+                    }
+                }
+            }
+
+            static moveDown(number) {
+                if(document.getElementById("box" + start.x + "." + (start.y + 1)).getAttribute('kind') == 'item') {
+                    ahri.weapon = true;
+                }
+                if(start.y != (number - 1) && document.getElementById("box" + start.x + "." + (start.y + 1)).getAttribute('status') == 'non-block') {
+                    if(document.getElementById("box" + start.x+ "." + (start.y + 1)).getAttribute('kind') != 'monster' || ahri.weapon == true) {
+                        document.getElementById("box" + start.x + "." + start.y).innerHTML = "";
+                        start.y++;
+                        ahri.createThings(start.x, start.y);
+                    }
+                }
+            }
         }
-          getColor();
-        $(document).ready(function() {
-          getQuotes().then(() => {
-            getQuote();
-          })
-        })
+        class mazeGame {
+                static makeMaze(number) {
+                    for(let i = 0; i < number; i++) {
+                        document.getElementById('wrapper').innerHTML += "<div class='container' id='col" + i + "'>";
+                        for(let j = 0; j < number; j++) {
+                            document.getElementById('col' + i).innerHTML += "<div class='box' id='box" + i + "." + j + "' status='block' style='background-color: white; cursor:'></div>";
+                        }
+                        document.getElementById('wrapper').innerHTML += "</div>";
+                    }
+                }
+                static drawMazeFrame(col, number) {
+                    document.getElementById("box" + (number - 1) + "." + 0).style.backgroundColor = "black";
+                    document.getElementById("box" + 0 + "." + (number - 1)).style.backgroundColor = "black";
+                    for(let i = col; i < number - col; i++) {
+                        document.getElementById("box" + i + "." + col).style.backgroundColor = "black";
+                        document.getElementById("box" + col + "." + i).style.backgroundColor = "black";
+                        document.getElementById("box" + ((number - 1) - col ) + "." + i).style.backgroundColor = "black";
+                        document.getElementById("box" + i + "." + ((number - 1) - col)).style.backgroundColor = "black";
+                    }
+                }
+
+                static putWay(col, number) {
+                    let n = Math.floor(Math.random() * ((number - 2) - col*2) + col + 1);
+                    document.getElementById("box" + col + "." + n).style.backgroundColor = "white";
+                    if(i % 2 == 1) {
+                        document.getElementById("box" + (col - 1) + "." + (n + 1)).style.backgroundColor = "black";
+                    }
+                    n = Math.floor(Math.random() * ((number - 4) - col*2) + col + 2);
+                    document.getElementById("box" + n + "." + col).style.backgroundColor = "white";
+                    if(i % 2 == 1) {
+                        document.getElementById("box" + (n + 1) + "." + (col + 1)).style.backgroundColor = "black";
+                    }
+                    n = Math.floor(Math.random() * ((number - 3) - col*2) + col + 2);
+                    document.getElementById("box" + ((number - 1) - col) + "." + n).style.backgroundColor = "white";
+                    document.getElementById("box" + (number - col) + "." + (n - 1)).style.backgroundColor = "black";
+                    n = Math.floor(Math.random() * ((number - 6) - col*2) + col + 4);
+                    document.getElementById("box" + n + "." + ((number - 1) - col)).style.backgroundColor = "white";
+                    if(i % 2 == 0) {
+                        document.getElementById("box" + (n - 1) + "." + (number - col)).style.backgroundColor = "black";
+                        } else {
+                            document.getElementById("box" + (n + 1) + "." + (number - col)).style.backgroundColor = "black";
+                        }
+                    i++;
+                }
+            }
+            class Player {
+                constructor(name) {
+                    this.name = name;
+                }
+                getName() {
+
+                }
+                getPoint() {
+
+                }
+                getTime() {
+                    
+                }
+            }
+            class things {
+                constructor(image) {
+                    this.image = image;
+                }
+                createThings(x, y) {
+                    return document.getElementById("box" + x + "." + y).innerHTML = this.image;
+                }
+            }
+            class mainCharacter extends things {
+                constructor(image) {
+                    super(image);
+                    this.weapon = false;
+                    this.alive = true;
+                }
+            }
+            class monster extends things {
+                constructor(image) {
+                    super(image);
+                    this.alive = true;
+                }
+                createThings(x, y) {
+                    document.getElementById("box" + x + "." + y).setAttribute('kind', 'monster');
+                    return document.getElementById("box" + x + "." + y).innerHTML = this.image;
+                }
+
+            }
+            class stuff extends things {
+                constructor(image) {
+                    super(image);
+                }
+                createThings(x, y) {
+                    document.getElementById("box" + x + "." + y).setAttribute('kind', 'item');
+                    return document.getElementById("box" + x + "." + y).innerHTML = this.image;
+                }
+            }
+
+    </script>
+    <body>
+        <form>
+            <input style = "font-size: 20px; margin-left: 40%; margin-top: 1%; outline: none; resize: none; overflow: auto; height: 32px; width: 350px;" placeholder="Input Player Name Here..." ></input>
+            <input type="submit" value="Submit" style="font-size: 20px; border: none; background-color: #4CAF50; padding: 8px 20px; color: white; cursor: pointer; top: 100px">
+        </form>   
+        <div style = "text-align: center; font-size: 39px; margin-top: 30px;"> Press <button style="font-size: 20px; margin-left: 0%; border: none; background-color: #4CAF50; padding: 8px 20px; color: white; cursor: pointer;" onclick="showHint(number)">Here</button> to show hint</div>
+        <div style="margin-left: 34%">
+            <div style="display: inline-block;">
+                <button style="font-size: 20px; margin-top: 25px; border: none; background-image: linear-gradient(150deg, #662D8C, #ED1E79) ; padding: 8px 20px; color: white; cursor: pointer; width: 300px;" 
+                onclick="changeToMonster()">Click to create Monster</button>
+            </div>
+            <div style="display: inline-block;">
+                <button style="font-size: 20px; margin-top: 25px; border: none; background-image: linear-gradient(150deg, #2E3192, #1BFFFF); padding: 8px 20px; color: white; cursor: pointer; width: 300px; margin-left: 20px;" 
+                onclick ="changeToItem()">Click to create Item</button>
+            </div>
+            <div style="margin-left: 15%; margin-top: 5px;">(Then click a white place in maze)</div>
+        </div>
+        <div class="wrap" id="wrapper">
+            <script>
+                mazeGame.makeMaze(number);
+            </script>               
+        </div>
+        <div>
+            <button style="font-size: 20px; margin-top: 25px; border: none; background-color: #4CAF50; padding: 8px 20px; color: white; cursor: pointer; width: 300px; margin-left: 42%;" onclick="location.reload()">Restart</button>
+        </div>
+    </body>
+    <script>
+        let ahriImage = "<img src='https://www.pngkey.com/png/full/138-1383596_arcade-ahri-arcade-ahri-icon.png'>"
+        let monsterImage = "<img src='https://ih1.redbubble.net/image.1164009017.0162/st,small,507x507-pad,600x600,f8f8f8.jpg'>";
+        let itemImage ="<img src='https://external-preview.redd.it/tgSU2nPcJLXvivdgZV2JGaMLwUiSj0ynbH4To8kKK10.png?auto=webp&s=1a5e4cdce57e128ae17fa8fd595247eb207aeb37'>"
+
+        let ahri = new mainCharacter(ahriImage);
+        let baron = new monster(monsterImage);
+        let rabadon = new stuff(itemImage);
+
+        let thing = "";
+        let createThing = (i, j) => {
+            if(thing == "monster") {
+                baron.createThings(i, j);
+            } else if(thing == "item") {
+                rabadon.createThings(i, j);
+            }
+        }
         
-      </script>
+        let start = {
+            x: 0,
+            y: 0
+        }
+
+        let end = {
+            x: 0,
+            y: 0
+        }
+        
+        function changeToMonster() {
+            thing = "monster";
+        }
+        function changeToItem() {
+            thing = "item";
+        }
+         
+        function createMatrix() {
+            for(let i = 0; i < number; i++) {
+                for(let j = 0; j < number; j++) {
+                    if(document.getElementById("box" + i + "." + j).style.backgroundColor != "black") {
+                        document.getElementById("box" + i + "." + j).setAttribute('status', 'non-block');
+                        document.getElementById("box" + i + "." + j).setAttribute('onclick', 'createThing('+ i + ',' + j + ')');
+                        document.getElementById("box" + i + "." + j).style.cursor = "pointer";
+                    }
+                }
+            }
+        }  
+        let i = 1;
+
+        function setUp(number) {
+            end.x = number - 1;
+            end.y = number - 1 ;
+            document.getElementById("box" + Math.floor(Math.random() * ((number - 2) - 1*2) + 1 + 1) + "." + 1).style.backgroundColor = "white";
+            document.getElementById("box" + (number - 2) + "." + (number - 3)).style.backgroundColor = "white";
+            document.getElementById("box" + (number - 5) + "." + (number - 4)).style.backgroundColor = "white";
+            document.getElementById("box" + (number - 21) + "." + (number - 11)).style.backgroundColor = "white";
+            ahri.createThings(start.x, start.y);
+            document.getElementById("box" + end.x + "." + end.y).innerHTML = "<img src='https://1.bp.blogspot.com/-6uvLKIPjQiI/XwjE70-T2rI/AAAAAAABodk/52T1lDII8kgHpayfR4GfJskttqQaZiQvQCLcBGAsYHQ/s200/SpiritBlossom2020_KanmeiOrb_490px.png'>";
+        }
+        window.addEventListener("keydown", function(event) {
+            switch(event.key) {
+                case 'ArrowUp': 
+                    movement.moveUp();
+                    break;
+                case 'ArrowDown' : 
+                    movement.moveDown(number);
+                    break;
+                case 'ArrowLeft' : 
+                    movement.moveLeft();
+                    break;
+                case 'ArrowRight' : 
+                    movement.moveRight(number);
+                    break;
+            }
+            if(start.x == end.x && start.y == end.y) {
+                alert("YOU WIN!!!!!!!!!!!!!!!");
+            }
+        })  
+        for(let i = 1; i <= (number/2 - 2); i+=2) {
+            mazeGame.drawMazeFrame(i, number);
+        }
+        for(let i = 3; i <= (number/2 - 4); i+=2) {
+            mazeGame.putWay(i, number);
+        }
+
+        setUp(number);
+        createMatrix();
+
+        function makeHint(number) {
+            this.maze = new Array(number).fill(0).map(() => new Array(number).fill(0));
+            this.visited = new Array(number)
+                .fill(false)
+                .map(() => new Array(number)
+                .fill(false));
+            this.sol = new Array(number).fill(false).map(() => new Array(number).fill(false));
+
+            for (let i = 0; i < number; i++) {
+                for (let j = 0; j < number; j++) {
+                    if (document.getElementById("box" + i + "." + j).getAttribute("status") !="non-block") {
+                    maze[i][j] = 1;
+                    }
+                }
+            }
+        }
+
+        makeHint(number);
+
+        function find(x, y, number) {
+        if (x == (number - 1) && y == (number - 1)) {
+            return true;
+        }
+        if (maze[x][y] == 1 || visited[x][y]) {
+            return false;
+        }
+        visited[x][y] = true;
+        // check left
+        if (y > 0) {
+            if (find(x, y - 1, number)) {
+            sol[x][y] = true;
+            return true;
+            }
+        }
+        // check right
+        if (y < (number - 1)) {
+            if (find(x, y + 1, number)) {
+            sol[x][y] = true;
+            return true;
+            }
+        }
+        
+        // check up
+        if (x > 0) {
+            if (find(x - 1, y, number)) {
+            sol[x][y] = true;
+            return true;
+            }
+        }
+
+        //check down
+        if (x < (number - 1)) {
+            if (find(x + 1, y, number)) {
+                sol[x][y] = true;
+                return true;
+            }
+        } 
+        return false;
+        }
+
+        function showHint(number) {
+            if (find(0, 0, number)) {
+                sol[0][0] = false;
+                for (let i = 0; i < number; i++) {
+                    for (let j = 0; j < number; j++) {
+                        if (sol[i][j]) {
+                        document.getElementById("box" + i + "." + j).style.backgroundColor ="rgb(254,216,177)";
+                        }
+                    }
+                }
+            } else {
+                alert("This Maze Have No Exit");
+                location.reload();
+            }
+        }
+    </script>
 </html>
