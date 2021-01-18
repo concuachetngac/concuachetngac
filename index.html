@@ -362,6 +362,9 @@
         }
 
         function showHint(hint) {
+            if (hint === 0) {
+                alert('This Maze Have No Exit!!!');
+            }
             for (let i = 0; i < hint.length; i++) {
                 document.getElementById("box" + hint[i].x + "." + hint[i].y).style.backgroundColor ="rgb(254,216,177)";
             }
